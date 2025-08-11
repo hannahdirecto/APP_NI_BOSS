@@ -1,0 +1,73 @@
+Screen:
+
+    MDBottomNavigation:
+        panel_color: 0, 0, 0, 1  # Black background
+
+        MDBottomNavigationItem:
+            name: 'home'
+            text: 'Home'
+            icon: 'home'
+
+            BoxLayout:
+                orientation: 'vertical'
+                spacing: dp(20)
+                padding: dp(20)
+
+                MDLabel:
+                    text: "Welcome Home!"
+                    halign: "center"
+                    theme_text_color: "Custom"
+                    text_color: 1, 1, 1, 1
+                    font_style: "H5"
+
+        MDBottomNavigationItem:
+            name: 'explore'
+            text: 'Explore'
+            icon: 'magnify'
+
+            BoxLayout:
+                orientation: 'vertical'
+                spacing: dp(20)
+                padding: dp(20)
+
+                MDLabel:
+                    markup: True
+                    halign: "center"
+                    text: "[color=ffffff]Kain [color=ffca28][b]mami[/b][/color][/color]"
+                    font_style: "H5"
+
+                MDCard:
+                    size_hint: None, None
+                    size: "280dp", "100dp"
+                    pos_hint: {"center_x": 0.5}
+                    elevation: 10
+                    orientation: 'vertical'
+                    padding: 10
+                    spacing: 10
+
+                    MDLabel:
+                        text: "Welcome to the Explore Page!"
+                        theme_text_color: "Primary"
+                        font_style: "Subtitle1"
+                        halign: "center"
+
+                    MDRaisedButton:
+                        text: "Say Hi"
+                        pos_hint: {"center_x": 0.5}
+                        on_release: app.say_hi()
+
+        MDBottomNavigationItem:
+            name: 'cart'
+            text: 'Cart'
+            icon: 'cart'
+
+        MDBottomNavigationItem:
+            name: 'notifications'
+            text: 'Notifications'
+            icon: 'bell'
+
+        MDBottomNavigationItem:
+            name: 'account'
+            text: 'Account'
+            icon: 'account'
+
