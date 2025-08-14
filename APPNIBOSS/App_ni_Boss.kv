@@ -25,49 +25,148 @@ Screen:
             text: 'Explore'
             icon: 'magnify'
 
-            BoxLayout:
-                orientation: 'vertical'
-                spacing: dp(20)
-                padding: dp(20)
-
-                MDLabel:
-                    markup: True
-                    halign: "center"
-                    text: "[color=ffffff]Kain [color=ffca28][b]mami[/b][/color][/color]"
-                    font_style: "H5"
-
-                MDCard:
-                    size_hint: None, None
-                    size: "280dp", "100dp"
-                    pos_hint: {"center_x": 0.5}
-                    elevation: 10
+            ScrollView:
+                BoxLayout:
                     orientation: 'vertical'
-                    padding: 10
-                    spacing: 10
+                    spacing: dp(20)
+                    padding: dp(20)
+                    size_hint_y: None
+                    height: self.minimum_height
+
+                    # UPDATED "Kainmami" LOGO
+                    BoxLayout:
+                        orientation: "horizontal"
+                        size_hint_y: None
+                        height: self.minimum_height
+                        padding: dp(10)
+                        spacing: dp(5)
+                        pos_hint: {"center_x": 0.5}
+
+                        MDLabel:
+                            text: "Kain"
+                            font_style: "H4"
+                            theme_text_color: "Custom"
+                            text_color: 1, 1, 1, 1
+                            size_hint: None, None
+                            size: self.texture_size
+                            halign: "left"
+
+                        MDCard:
+                            radius: [8]
+                            md_bg_color: 1, 0.6, 0, 1  # Orange background for 'mami'
+                            padding: dp(6), dp(2)
+                            size_hint: None, None
+                            elevation: 0
+                            size: self.minimum_size
+
+                            MDLabel:
+                                text: "mami"
+                                font_style: "H6"
+                                theme_text_color: "Custom"
+                                text_color: 0, 0, 0, 1  # Black text inside orange box
+                                halign: "center"
+                                valign: "middle"
+                                size_hint: None, None
+                                size: self.texture_size
+
+                    MDTextField:
+                        id: search_field
+                        hint_text: "Search food..."
+                        icon_right: "magnify"
+                        size_hint_x: 1
+                        pos_hint: {"center_x": 0.5}
+                        size_hint_y: None
+                        height: "50dp"
+                        on_text: app.filter_items(self.text)
 
                     MDLabel:
-                        text: "Welcome to the Explore Page!"
-                        theme_text_color: "Primary"
+                        text: "Recommendations"
                         font_style: "Subtitle1"
-                        halign: "center"
+                        theme_text_color: "Secondary"
+                        halign: "left"
+                        size_hint_y: None
+                        height: self.texture_size[1]
 
-                    MDRaisedButton:
-                        text: "Say Hi"
+                    ScrollView:
+                        id: recommendation_scroll
+                        do_scroll_x: True
+                        do_scroll_y: False
+                        size_hint_y: None
+                        height: dp(160)
+
+                        BoxLayout:
+                            id: recommendation_box
+                            orientation: 'horizontal'
+                            size_hint_y: None
+                            height: dp(150)
+                            spacing: dp(10)
+                            padding: dp(10)
+
+                    MDLabel:
+                        text: "Search Results"
+                        font_style: "Subtitle1"
+                        theme_text_color: "Secondary"
+                        halign: "left"
+                        size_hint_y: None
+                        height: self.texture_size[1]
+
+                    ScrollView:
+                        MDList:
+                            id: item_list
+
+                    MDCard:
+                        id: welcome_card
+                        size_hint: None, None
+                        size: "300dp", "120dp"
                         pos_hint: {"center_x": 0.5}
-                        on_release: app.say_hi()
+                        elevation: 12
+                        orientation: 'vertical'
+                        padding: dp(15)
+                        spacing: dp(10)
+                        radius: [20, 20, 20, 20]
+                        opacity: 1
+                        md_bg_color: 0.1, 0.1, 0.1, 1
+
+                        MDLabel:
+                            text: "Welcome to the Explore Page!"
+                            theme_text_color: "Primary"
+                            font_style: "Subtitle1"
+                            halign: "center"
+
+                        MDRaisedButton:
+                            text: "Say Hi"
+                            pos_hint: {"center_x": 0.5}
+                            on_release: app.say_hi()
 
         MDBottomNavigationItem:
             name: 'cart'
             text: 'Cart'
             icon: 'cart'
 
+            BoxLayout:
+                orientation: 'vertical'
+                MDLabel:
+                    text: "Cart is empty"
+                    halign: "center"
+
         MDBottomNavigationItem:
             name: 'notifications'
             text: 'Notifications'
             icon: 'bell'
+
+            BoxLayout:
+                orientation: 'vertical'
+                MDLabel:
+                    text: "No new notifications"
+                    halign: "center"
 
         MDBottomNavigationItem:
             name: 'account'
             text: 'Account'
             icon: 'account'
 
+            BoxLayout:
+                orientation: 'vertical'
+                MDLabel:
+                    text: "User Account"
+                    halign: "center"
